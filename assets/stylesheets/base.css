@@ -504,12 +504,17 @@ article {
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  height: 20em;
 }
 .avatar {
   position: relative;
-  max-width: 12rem;
+  max-width: 14rem;
   display: block;
   flex: 1 0 auto;
+}
+
+.avatar:hover {
+  cursor: pointer;
 }
 
 /* Divider */
