@@ -134,19 +134,40 @@
         document.getElementById('avatar').data = './assets/images/avatar.jpg'
       }
 
+      let choosenFunctionInProgress = false;
+      const themeSound = new Audio('./assets/sounds/Harry_Potter_Theme.mp3');
+
       const chooseHouse = () => {
-        const themeSound = new Audio('./assets/sounds/Harry_Potter_Theme.mp3');
+        if (choosenFunctionInProgress) {
+          return;
+        }
+
+        choosenFunctionInProgress = true;
+
         const resultSection = document.getElementById('sorting-hat-results');
         const result = document.createElement('h3');
-        result.innerHTML = 'You going to ...';
         const academy = document.createElement('h2');
-        academy.innerHTML = 'Binary Studio Academy';
 
-        themeSound.play();
+        while (resultSection.firstChild) {
+          resultSection.removeChild(resultSection.lastChild);
+        }
+
+        result.innerHTML = 'You going to ...';
+        academy.innerHTML = 'Binary Studio Academy';
+        
+        playSound();
         resultSection.appendChild(result);
         setTimeout(() => {
           resultSection.appendChild(academy);
-        }, 2000);
+          choosenFunctionInProgress = false;
+        }, 3500);
+      }
+
+      function playSound() {
+        themeSound.pause();
+        themeSound.currentTime = 0;
+
+        themeSound.play();
       }
     </script>
   </body>
